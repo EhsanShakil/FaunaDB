@@ -51,8 +51,14 @@ const q = faunadb.query;
     //
     // console.log("Result", result);
 
+    // var result = await client.query(
+    //   q.Get(q.Ref(q.Collection("post"), "290614922582163981"))
+    // );
+
+    // console.log("Result", result);
+
     var result = await client.query(
-      q.Get(q.Ref(q.Collection("post"), "290614922582163981"))
+      q.Get(q.Match(q.Index("post_title"), "Third Title"))
     );
 
     console.log("Result", result);
