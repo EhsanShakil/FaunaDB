@@ -8,7 +8,6 @@ const q = faunadb.query;
   try {
     // var result = await client.query(q.CreateDatabase({ name: "faunadb" }));
     // console.log("Result", result);
-
     // var result = await client.query(
     //   q.CreateKey({
     //     database: q.Database("faunadb"),
@@ -16,10 +15,8 @@ const q = faunadb.query;
     //   })
     // );
     // console.log("Result", result.secret);
-
     // var result = await client.query(q.CreateCollection({ name: "post" }));
     // console.log("Result", result);
-
     // var result = await client.query(
     //   q.CreateIndex({
     //     name: "post_title",
@@ -28,31 +25,34 @@ const q = faunadb.query;
     //   })
     // );
     // console.log("Result", result);
-
     // var result = await client.query(
     //   q.Create(q.Collection("post"), {
     //     data: { title: "title 1" },
     //   })
     // );
     // console.log("Result", result);
-
     // var result = await client.query(
     //   q.Create(q.Collection("post"), {
     //     data: { name: "ABC", age: 20 },
     //   })
     // );
     // console.log("Result", result);
+    // var result = await client.query(
+    //   q.Map(
+    // ["First Title", "Second Title", "Third Title"],
+    // q.Lambda(
+    //   "post_title",
+    //   q.Create(q.Collection("post"), {
+    // data: { title: q.Var("post_title") },
+    //   })
+    // )
+    //   )
+    // );
+    //
+    // console.log("Result", result);
 
     var result = await client.query(
-      q.Map(
-        ["First Title", "Second Title", "Third Title"],
-        q.Lambda(
-          "post_title",
-          q.Create(q.Collection("post"), {
-            data: { title: q.Var("post_title") },
-          })
-        )
-      )
+      q.Get(q.Ref(q.Collection("post"), "290614922582163981"))
     );
 
     console.log("Result", result);
