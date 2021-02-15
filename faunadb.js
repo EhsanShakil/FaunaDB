@@ -57,8 +57,16 @@ const q = faunadb.query;
 
     // console.log("Result", result);
 
+    // var result = await client.query(
+    //   q.Get(q.Match(q.Index("post_title"), "Third Title"))
+    // );
+
+    // console.log("Result", result);
+
     var result = await client.query(
-      q.Get(q.Match(q.Index("post_title"), "Third Title"))
+      q.Update(q.Ref(q.Collection("post"), "290617226998842888"), {
+        data: { title: "Third Title Updated" },
+      })
     );
 
     console.log("Result", result);
