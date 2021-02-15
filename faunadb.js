@@ -29,11 +29,32 @@ const q = faunadb.query;
     // );
     // console.log("Result", result);
 
+    // var result = await client.query(
+    //   q.Create(q.Collection("post"), {
+    //     data: { title: "title 1" },
+    //   })
+    // );
+    // console.log("Result", result);
+
+    // var result = await client.query(
+    //   q.Create(q.Collection("post"), {
+    //     data: { name: "ABC", age: 20 },
+    //   })
+    // );
+    // console.log("Result", result);
+
     var result = await client.query(
-      q.Create(q.Collection("post"), {
-        data: { title: "title 1" },
-      })
+      q.Map(
+        ["First Title", "Second Title", "Third Title"],
+        q.Lambda(
+          "post_title",
+          q.Create(q.Collection("post"), {
+            data: { title: q.Var("post_title") },
+          })
+        )
+      )
     );
+
     console.log("Result", result);
   } catch (error) {
     console.log(error);
