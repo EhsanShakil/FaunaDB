@@ -63,12 +63,25 @@ const q = faunadb.query;
 
     // console.log("Result", result);
 
-    var result = await client.query(
-      q.Update(q.Ref(q.Collection("post"), "290617226998842888"), {
-        data: { title: "Third Title Updated" },
-      })
-    );
+    // var result = await client.query(
+    //   q.Update(q.Ref(q.Collection("post"), "290617226998842888"), {
+    //     data: { title: "Third Title Updated" },
+    //   })
+    // );
 
+    // console.log("Result", result);
+
+    // var result = await client.query(
+    //   q.Replace(q.Ref(q.Collection("post"), "290617226998842888"), {
+    //     data: { name: "This is a third title" },
+    //   })
+    // );
+
+    // console.log("Result", result);
+
+    var result = await client.query(
+      q.Delete(q.Ref(q.Collection("post"), "290617226998842888"))
+    );
     console.log("Result", result);
   } catch (error) {
     console.log(error);
